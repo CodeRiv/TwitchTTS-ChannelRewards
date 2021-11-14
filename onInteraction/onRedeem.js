@@ -1,5 +1,5 @@
 const say = require('say');
-//Test
+
 module.exports = (channel, context, message, self, rewardID) => {
     console.log(`Mensaje normal: ${message}`);
 
