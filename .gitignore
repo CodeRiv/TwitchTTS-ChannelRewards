@@ -1,4 +1,6 @@
 .env
 node_modules/
 Releases/
-ttstwitch-*
+ttstwitch-linux
+ttstwitch-macos
+ttstwitch-win.exe
