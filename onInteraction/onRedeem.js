@@ -1,9 +1,17 @@
 const say = require('say');
+const async = require('async');
+
+const queueMessage = async.queue(function(message, cb){
+    say.speak(message, null, 1, (err) => {
+        if (err) {
+            return console.error(err);
+        }
+        cb();
+    })
+});
 
 module.exports = (channel, context, message, self, rewardID) => {
-    console.log(`Mensaje normal: ${message}`);
-
     if (context["custom-reward-id"] !== rewardID || message.length > 200) return;
-    return say.speak(message, 'Sabina', 1);
+    return queueMessage.push(message);
 
 }
