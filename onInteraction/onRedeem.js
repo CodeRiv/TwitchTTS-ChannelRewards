@@ -10,8 +10,8 @@ const queueMessage = async.queue(function(message, cb){
     })
 });
 
-module.exports = (channel, context, message, self, rewardID) => {
-    if (context["custom-reward-id"] !== rewardID || message.length > 200) return;
-    return queueMessage.push(message);
+module.exports = ({context, message, rewardID, maxLength}) => {
+    if (context["custom-reward-id"] !== rewardID || message.length > maxLength) return;
+    return queueMessage.push(`${context.username} dice: ${message}`);
 
 }
